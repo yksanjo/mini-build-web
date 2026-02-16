@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎃 Halloween Pumpkin Decorator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>🎃 Halloween Pumpkin Decorator 👻</h1>
+            <p class="subtitle">Carve and decorate your perfect jack-o'-lantern</p>
+        </header>
+
+        <div class="main-content">
+            <div class="pumpkin-section">
+                <div class="pumpkin-container" id="pumpkinContainer">
+                    <svg id="pumpkinSvg" viewBox="0 0 400 450">
+                        <!-- Pumpkin body -->
+                        <ellipse id="pumpkinBody" cx="200" cy="280" rx="140" ry="120" fill="#FF7518" />
+                        <ellipse cx="200" cy="280" rx="120" ry="100" fill="#FF8C00" />
+                        <ellipse cx="200" cy="280" rx="100" ry="80" fill="#FFA500" />
+                        
+                        <!-- Pumpkin ridges -->
+                        <ellipse cx="160" cy="280" rx="25" ry="100" fill="#FF7518" opacity="0.6" />
+                        <ellipse cx="240" cy="280" rx="25" ry="100" fill="#FF7518" opacity="0.6" />
+                        <ellipse cx="200" cy="280" rx="20" ry="90" fill="#FF8C00" opacity="0.4" />
+                        
+                        <!-- Stem -->
+                        <path d="M195,165 Q190,140 200,130 Q210,140 205,165 Z" fill="#2D5016" />
+                        <path d="M195,165 Q185,150 195,140" stroke="#3D6B1E" stroke-width="2" fill="none" />
+                        
+                        <!-- Face cutouts (will be revealed when carved) -->
+                        <g id="faceArea">
+                            <!-- Eyes -->
+                            <polygon id="leftEye" points="150,240 170,240 160,200" fill="#1a1a2e" />
+                            <polygon id="rightEye" points="230,240 250,240 240,200" fill="#1a1a2e" />
+                            <!-- Nose -->
+                            <polygon id="nose" points="200,260 190,250 210,250" fill="#1a1a2e" />
+                            <!-- Mouth -->
+                            <path id="mouth" d="M130,300 Q160,350 200,310 Q240,350 270,300 Q240,340 200,320 Q160,340 130,300" fill="#1a1a2e" />
+                        </g>
+                        
+                        <!-- Glow effect when lit -->
+                        <ellipse id="glowEffect" cx="200" cy="280" rx="150" ry="130" fill="url(#candleGlow)" opacity="0" />
+                        <defs>
+                            <radialGradient id="candleGlow">
+                                <stop offset="0%" stop-color="#FFDD00" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#FF4500" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                    
+                    <div class="decoration-zone" id="decorationZone"></div>
+                </div>
+                
+                <div class="pumpkin-controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Pumpkin Size</span>
+                            <input type="range" id="pumpkinSize" min="0.8" max="1.5" step="0.1" value="1">
+                            <span class="value" id="pumpkinSizeValue">100%</span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Pumpkin Color</span>
+                            <select id="pumpkinColor">
+                                <option value="orange">🎃 Classic Orange</option>
+                                <option value="white">👻 Ghost White</option>
+                                <option value="yellow">🌟 Golden</option>
+                                <option value="red">🔴 Red</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button class="action-btn" id="lightBtn">🕯️ Light Pumpkin</button>
+                        <button class="action-btn" id="clearBtn">🗑️ Clear All</button>
+                        <button class="action-btn" id="exportBtn">📸 Export Pumpkin</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorations-panel">
+                <div class="decorations-section">
+                    <h3>👁️ Face Features</h3>
+                    <div class="decorations-grid" id="faceGrid">
+                        <div class="decoration-item" data-type="eye-triangle" draggable="true">
+                            <div class="decoration-preview">🔺</div>
+                            <span>Triangle Eye</span>
+                        </div>
+                        <div class="decoration-item" data-type="eye-square" draggable="true">
+                            <div class="decoration-preview">⬛</div>
+                            <span>Square Eye</span>
+                        </div>
+                        <div class="decoration-item" data-type="eye-circle" draggable="true">
+                            <div class="decoration-preview">⭕</div>
+                            <span>Circular Eye</span>
+                        </div>
+                        <div class="decoration-item" data-type="nose-triangle" draggable="true">
+                            <div class="decoration-preview">🔻</div>
+                            <span>Triangle Nose</span>
+                        </div>
+                        <div class="decoration-item" data-type="nose-circle" draggable="true">
+                            <div class="decoration-preview">⚫</div>
+                            <span>Dot Nose</span>
+                        </div>
+                        <div class="decoration-item" data-type="mouth-smile" draggable="true">
+                            <div class="decoration-preview">😊</div>
+                            <span>Smile</span>
+                        </div>
+                        <div class="decoration-item" data-type="mouth-toothy" draggable="true">
+                            <div class="decoration-preview">😬</div>
+                            <span>Toothy</span>
+                        </div>
+                        <div class="decoration-item" data-type="mouth-frown" draggable="true">
+                            <div class="decoration-preview">😮</div>
+                            <span>Scary Mouth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decorations-section">
+                    <h3>🎭 Stickers</h3>
+                    <div class="decorations-grid" id="stickerGrid">
+                        <div class="decoration-item" data-type="spider" draggable="true">
+                            <div class="decoration-preview">🕷️</div>
+                            <span>Spider</span>
+                        </div>
+                        <div class="decoration-item" data-type="web" draggable="true">
+                            <div class="decoration-preview">🕸️</div>
+                            <span>Web</span>
+                        </div>
+                        <div class="decoration-item" data-type="bat" draggable="true">
+                            <div class="decoration-preview">🦇</div>
+                            <span>Bat</span>
+                        </div>
+                        <div class="decoration-item" data-type="ghost" draggable="true">
+                            <div class="decoration-preview">👻</div>
+                            <span>Ghost</span>
+                        </div>
+                        <div class="decoration-item" data-type="skull" draggable="true">
+                            <div class="decoration-preview">💀</div>
+                            <span>Skull</span>
+                        </div>
+                        <div class="decoration-item" data-type="bone" draggable="true">
+                            <div class="decoration-preview">🦴</div>
+                            <span>Bone</span>
+                        </div>
+                        <div class="decoration-item" data-type="candy" draggable="true">
+                            <div class="decoration-preview">🍬</div>
+                            <span>Candy</span>
+                        </div>
+                        <div class="decoration-item" data-type="candy-corn" draggable="true">
+                            <div class="decoration-preview">🌽</div>
+                            <span>Candy Corn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lights-section">
+                    <h3>✨ Effects</h3>
+                    <div class="lights-controls">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableGlow">
+                            <span>Enable Candle Glow</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableFlicker">
+                            <span>Flickering Light</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥚 Easter Egg Decorator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>🥚 Easter Egg Decorator 🐰</h1>
+            <p class="subtitle">Paint and decorate your perfect Easter eggs</p>
+        </header>
+
+        <div class="main-content">
+            <div class="egg-section">
+                <div class="egg-container" id="eggContainer">
+                    <svg id="eggSvg" viewBox="0 0 300 400">
+                        <!-- Egg base -->
+                        <ellipse id="eggBase" cx="150" cy="220" rx="100" ry="140" fill="#F5DEB3" />
+                        <ellipse cx="150" cy="220" rx="90" ry="130" fill="#FFF8DC" />
+                        
+                        <!-- Egg patterns (decorations applied here) -->
+                        <g id="eggPatterns"></g>
+                        
+                        <!-- Shiny highlight -->
+                        <ellipse cx="120" cy="160" rx="25" ry="40" fill="white" opacity="0.3" />
+                    </svg>
+                    
+                    <div class="decoration-zone" id="decorationZone"></div>
+                </div>
+                
+                <div class="egg-controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Egg Size</span>
+                            <input type="range" id="eggSize" min="0.8" max="1.5" step="0.1" value="1">
+                            <span class="value" id="eggSizeValue">100%</span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Base Color</span>
+                            <select id="eggColor">
+                                <option value="natural">🥚 Natural</option>
+                                <option value="white">⚪ White</option>
+                                <option value="blue">🔵 Blue</option>
+                                <option value="pink">🌸 Pink</option>
+                                <option value="purple">💜 Purple</option>
+                                <option value="yellow">🌼 Yellow</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button class="action-btn" id="clearBtn">🗑️ Clear All</button>
+                        <button class="action-btn" id="exportBtn">📸 Export Egg</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorations-panel">
+                <div class="decorations-section">
+                    <h3>🎨 Patterns</h3>
+                    <div class="decorations-grid" id="patternsGrid">
+                        <div class="decoration-item" data-type="stripes" draggable="true">
+                            <div class="decoration-preview">〰️</div>
+                            <span>Stripes</span>
+                        </div>
+                        <div class="decoration-item" data-type="zigzag" draggable="true">
+                            <div class="decoration-preview">⚡</div>
+                            <span>Zigzag</span>
+                        </div>
+                        <div class="decoration-item" data-type="dots" draggable="true">
+                            <div class="decoration-preview">🔴</div>
+                            <span>Dots</span>
+                        </div>
+                        <div class="decoration-item" data-type="spirals" draggable="true">
+                            <div class="decoration-preview">🌀</div>
+                            <span>Spirals</span>
+                        </div>
+                        <div class="decoration-item" data-type="flowers" draggable="true">
+                            <div class="decoration-preview">🌸</div>
+                            <span>Flowers</span>
+                        </div>
+                        <div class="decoration-item" data-type="chevron" draggable="true">
+                            <div class="decoration-preview">🏾</div>
+                            <span>Chevron</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decorations-section">
+                    <h3>🐰 Stickers</h3>
+                    <div class="decorations-grid" id="stickerGrid">
+                        <div class="decoration-item" data-type="bunny" draggable="true">
+                            <div class="decoration-preview">🐰</div>
+                            <span>Bunny</span>
+                        </div>
+                        <div class="decoration-item" data-type="chick" draggable="true">
+                            <div class="decoration-preview">🐣</div>
+                            <span>Chick</span>
+                        </div>
+                        <div class="decoration-item" data-type="carrot" draggable="true">
+                            <div class="decoration-preview">🥕</div>
+                            <span>Carrot</span>
+                        </div>
+                        <div class="decoration-item" data-type="basket" draggable="true">
+                            <div class="decoration-preview">🧺</div>
+                            <span>Basket</span>
+                        </div>
+                        <div class="decoration-item" data-type="egg" draggable="true">
+                            <div class="decoration-preview">🥚</div>
+                            <span>Egg</span>
+                        </div>
+                        <div class="decoration-item" data-type="tulip" draggable="true">
+                            <div class="decoration-preview">🌷</div>
+                            <span>Tulip</span>
+                        </div>
+                        <div class="decoration-item" data-type="butterfly" draggable="true">
+                            <div class="decoration-preview">🦋</div>
+                            <span>Butterfly</span>
+                        </div>
+                        <div class="decoration-item" data-type="rainbow" draggable="true">
+                            <div class="decoration-preview">🌈</div>
+                            <span>Rainbow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decorations-section">
+                    <h3>✨ Extras</h3>
+                    <div class="decorations-grid" id="extrasGrid">
+                        <div class="decoration-item" data-type="sparkle" draggable="true">
+                            <div class="decoration-preview">✨</div>
+                            <span>Sparkle</span>
+                        </div>
+                        <div class="decoration-item" data-type="star" draggable="true">
+                            <div class="decoration-preview">⭐</div>
+                            <span>Star</span>
+                        </div>
+                        <div class="decoration-item" data-type="heart" draggable="true">
+                            <div class="decoration-preview">❤️</div>
+                            <span>Heart</span>
+                        </div>
+                        <div class="decoration-item" data-type="flower" draggable="true">
+                            <div class="decoration-preview">🌼</div>
+                            <span>Flower</span>
+                        </div>
+                        <div class="decoration-item" data-type="ribbon" draggable="true">
+                            <div class="decoration-preview">🎀</div>
+                            <span>Ribbon</span>
+                        </div>
+                        <div class="decoration-item" data-type="bow" draggable="true">
+                            <div class="decoration-preview">🎀</div>
+                            <span>Bow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>🎨 Paint Colors</h3>
+                    <div class="color-picker">
+                        <div class="color-swatch" data-color="#FF6B6B" style="background: #FF6B6B;"></div>
+                        <div class="color-swatch" data-color="#4ECDC4" style="background: #4ECDC4;"></div>
+                        <div class="color-swatch" data-color="#45B7D1" style="background: #45B7D1;"></div>
+                        <div class="color-swatch" data-color="#96CEB4" style="background: #96CEB4;"></div>
+                        <div class="color-swatch" data-color="#FFEAA7" style="background: #FFEAA7;"></div>
+                        <div class="color-swatch" data-color="#DDA0DD" style="background: #DDA0DD;"></div>
+                        <div class="color-swatch" data-color="#FF8C00" style="background: #FF8C00;"></div>
+                        <div class="color-swatch" data-color="#98D8C8" style="background: #98D8C8;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

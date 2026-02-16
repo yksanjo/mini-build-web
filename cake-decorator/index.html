@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Birthday Cake Decorator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>🎂 Birthday Cake Decorator 🎉</h1>
+            <p class="subtitle">Design and decorate your perfect birthday cake</p>
+        </header>
+
+        <div class="main-content">
+            <div class="cake-section">
+                <div class="cake-container" id="cakeContainer">
+                    <svg id="cakeSvg" viewBox="0 0 400 500">
+                        <!-- Cake plate -->
+                        <ellipse cx="200" cy="420" rx="180" ry="30" fill="#e0e0e0" />
+                        <ellipse cx="200" cy="415" rx="170" ry="25" fill="#f5f5f5" />
+                        
+                        <!-- Cake tiers -->
+                        <g id="cakeTiers">
+                            <!-- Bottom tier -->
+                            <rect x="80" y="280" width="240" height="100" rx="5" fill="#F5DEB3" />
+                            <rect x="80" y="280" width="240" height="20" rx="5" fill="#DEB887" />
+                            
+                            <!-- Middle tier -->
+                            <rect x="110" y="200" width="180" height="80" rx="5" fill="#F5DEB3" />
+                            <rect x="110" y="200" width="180" height="15" rx="5" fill="#DEB887" />
+                            
+                            <!-- Top tier -->
+                            <rect x="140" y="140" width="120" height="60" rx="5" fill="#F5DEB3" />
+                            <rect x="140" y="140" width="120" height="12" rx="5" fill="#DEB887" />
+                        </g>
+                        
+                        <!-- Candles -->
+                        <g id="candles">
+                            <rect x="170" y="100" width="8" height="40" fill="#FF69B4" />
+                            <rect x="190" y="95" width="8" height="45" fill="#87CEEB" />
+                            <rect x="210" y="100" width="8" height="40" fill="#90EE90" />
+                            <rect x="230" y="95" width="8" height="45" fill="#FFD700" />
+                        </g>
+                        
+                        <!-- Flames -->
+                        <g id="flames">
+                            <ellipse class="flame" cx="174" cy="90" rx="6" ry="12" fill="#FF4500" />
+                            <ellipse class="flame" cx="194" cy="85" rx="6" ry="12" fill="#FF4500" />
+                            <ellipse class="flame" cx="214" cy="90" rx="6" ry="12" fill="#FF4500" />
+                            <ellipse class="flame" cx="234" cy="85" rx="6" ry="12" fill="#FF4500" />
+                        </g>
+                        
+                        <!-- Glow effect -->
+                        <ellipse id="candleGlow" cx="200" cy="100" rx="80" ry="60" fill="url(#cakeGlow)" opacity="0.3" />
+                        <defs>
+                            <radialGradient id="cakeGlow">
+                                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.6" />
+                                <stop offset="100%" stop-color="#FF4500" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                    
+                    <div class="decoration-zone" id="decorationZone"></div>
+                </div>
+                
+                <div class="cake-controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Cake Size</span>
+                            <input type="range" id="cakeSize" min="0.8" max="1.5" step="0.1" value="1">
+                            <span class="value" id="cakeSizeValue">100%</span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Cake Flavor</span>
+                            <select id="cakeFlavor">
+                                <option value="vanilla">🍦 Vanilla</option>
+                                <option value="chocolate">🍫 Chocolate</option>
+                                <option value="strawberry">🍓 Strawberry</option>
+                                <option value="redvelvet">❤️ Red Velvet</option>
+                                <option value="lemon">🍋 Lemon</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button class="action-btn" id="lightBtn">🕯️ Light Candles</button>
+                        <button class="action-btn" id="clearBtn">🗑️ Clear All</button>
+                        <button class="action-btn" id="exportBtn">📸 Export Cake</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorations-panel">
+                <div class="decorations-section">
+                    <h3>🕯️ Candles</h3>
+                    <div class="decorations-grid" id="candlesGrid">
+                        <div class="decoration-item" data-type="candle-pink" draggable="true">
+                            <div class="decoration-preview">🕯️</div>
+                            <span>Pink</span>
+                        </div>
+                        <div class="decoration-item" data-type="candle-blue" draggable="true">
+                            <div class="decoration-preview">🔵</div>
+                            <span>Blue</span>
+                        </div>
+                        <div class="decoration-item" data-type="candle-green" draggable="true">
+                            <div class="decoration-preview">🟢</div>
+                            <span>Green</span>
+                        </div>
+                        <div class="decoration-item" data-type="candle-gold" draggable="true">
+                            <div class="decoration-preview">🟡</div>
+                            <span>Gold</span>
+                        </div>
+                        <div class="decoration-item" data-type="candle-rainbow" draggable="true">
+                            <div class="decoration-preview">🌈</div>
+                            <span>Rainbow</span>
+                        </div>
+                        <div class="decoration-item" data-type="candle-number" draggable="true">
+                            <div class="decoration-preview">🎂</div>
+                            <span>With Number</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decorations-section">
+                    <h3>🍓 Toppings</h3>
+                    <div class="decorations-grid" id="toppingsGrid">
+                        <div class="decoration-item" data-type="strawberry" draggable="true">
+                            <div class="decoration-preview">🍓</div>
+                            <span>Strawberry</span>
+                        </div>
+                        <div class="decoration-item" data-type="blueberry" draggable="true">
+                            <div class="decoration-preview">🫐</div>
+                            <span>Blueberry</span>
+                        </div>
+                        <div class="decoration-item" data-type="cherry" draggable="true">
+                            <div class="decoration-preview">🍒</div>
+                            <span>Cherry</span>
+                        </div>
+                        <div class="decoration-item" data-type="chocolate" draggable="true">
+                            <div class="decoration-preview">🍫</div>
+                            <span>Chocolate</span>
+                        </div>
+                        <div class="decoration-item" data-type="sprinkles" draggable="true">
+                            <div class="decoration-preview">✨</div>
+                            <span>Sprinkles</span>
+                        </div>
+                        <div class="decoration-item" data-type="frosting" draggable="true">
+                            <div class="decoration-preview">🧁</div>
+                            <span>Frosting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decorations-section">
+                    <h3>🎉 Decorations</h3>
+                    <div class="decorations-grid" id="decoGrid">
+                        <div class="decoration-item" data-type="balloon" draggable="true">
+                            <div class="decoration-preview">🎈</div>
+                            <span>Balloon</span>
+                        </div>
+                        <div class="decoration-item" data-type="gift" draggable="true">
+                            <div class="decoration-preview">🎁</div>
+                            <span>Gift</span>
+                        </div>
+                        <div class="decoration-item" data-type="party" draggable="true">
+                            <div class="decoration-preview">🎉</div>
+                            <span>Party Popper</span>
+                        </div>
+                        <div class="decoration-item" data-type="confetti" draggable="true">
+                            <div class="decoration-preview">🎊</div>
+                            <span>Confetti</span>
+                        </div>
+                        <div class="decoration-item" data-type="star" draggable="true">
+                            <div class="decoration-preview">⭐</div>
+                            <span>Star</span>
+                        </div>
+                        <div class="decoration-item" data-type="heart" draggable="true">
+                            <div class="decoration-preview">❤️</div>
+                            <span>Heart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lights-section">
+                    <h3>✨ Effects</h3>
+                    <div class="lights-controls">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableGlow">
+                            <span>Enable Candle Glow</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableAnimation">
+                            <span>Candle Flicker</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
