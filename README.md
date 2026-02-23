@@ -1,5 +1,12 @@
 # mini-build-web
 
+Production-grade project scaffold focused on reliability, maintainability, and fast onboarding.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/yksanjo/mini-build-web/ci.yml?branch=main&label=ci)](https://github.com/yksanjo/mini-build-web/actions)
+![License](https://img.shields.io/github/license/yksanjo/mini-build-web)
+![Last Commit](https://img.shields.io/github/last-commit/yksanjo/mini-build-web)
+![Repo Size](https://img.shields.io/github/repo-size/yksanjo/mini-build-web)
+
 ## Detailed Description
 
 mini-build-web is maintained as an industry-grade software project with production-ready engineering practices.  
